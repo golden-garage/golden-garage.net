@@ -1,0 +1,22 @@
+<!-- client/views/note.html
+===  
+===  The Meteor template for displaying a single note within a list of notes.
+===
+===  Requires:
+===
+===    this         - a note
+===
+===    this.domain  - the note's domain                 {{domain}}
+===    this.title   - the note's title                  {{title}}
+===    this.url     - the note's reference URL          {{url}}
+===
+===
+===  last-modified: <2014-01-23 12:09:36 golden@golden-garage.net>
+-->
+<template name="note">
+  <div class="note">
+    <div class="note-content">
+      <h3><a href="{{url}}">{{title}}</a><span>{{domain}}</span></h3>
+    </div>
+  </div>
+</template>
