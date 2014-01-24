@@ -1,0 +1,44 @@
+<!-- views/application/header.html
+===
+=== This Meteor application's page header.
+=== 
+=== 
+=== Provides:
+===
+===   {{> header}} - the site's peage header template
+===
+=== 
+=== last-modified: <2014-01-23 21:07:52 golden@golden-garage.net>
+-->
+<template name="header">
+  <header class="navbar">
+    <div class="navbar-inner">
+
+      <!-- UNKNOWN -->
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <!-- site name -->
+      <a class="brand" href="{{pathFor 'notes'}}">golden-garage.net</a>
+
+      <!-- menu items -->
+      <div class="nav-collapse collapse">
+
+        <!-- new note -->
+        <ul class="nav">
+          {{#if currentUser}}<li><a href="{{pathFor 'noteCreate'}}">New</a></li>{{/if}}
+        </ul>
+
+        <!-- user/login pull down -->
+        <ul class="nav pull-right">
+          <li>{{loginButtons}}</li>
+        </ul>
+
+      </div>
+
+    </div>
+  </header>
+</template>

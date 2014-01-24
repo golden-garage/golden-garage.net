@@ -1,6 +1,6 @@
-<!-- client/views/note.html
+<!-- client/views/notes/note.html
 ===  
-===  The Meteor template for displaying a single note within a list of notes.
+===  The Meteor templates for displaying and creating a single note.
 ===
 ===  Requires:
 ===
@@ -10,13 +10,45 @@
 ===    this.title   - the note's title                  {{title}}
 ===    this.url     - the note's reference URL          {{url}}
 ===
+===  provides:
 ===
-===  last-modified: <2014-01-23 12:09:36 golden@golden-garage.net>
+===    {{note}}       - the note display  temnplate
+===    {{noteCreate}} - the note creation temnplate
+===
+===  last-modified: <2014-01-23 17:22:47 golden@golden-garage.net>
 -->
+
 <template name="note">
-  <div class="note">
-    <div class="note-content">
-      <h3><a href="{{url}}">{{title}}</a><span>{{domain}}</span></h3>
+  {{> notesEach}}
+</template>
+
+<template name="noteCreate">
+  <form class="main">
+    <div class="control-group">
+        <label class="control-label" for="url">URL</label>
+        <div class="controls">
+            <input name="url" type="text" value="" placeholder="Your URL"/>
+        </div>
     </div>
-  </div>
+
+    <div class="control-group">
+        <label class="control-label" for="title">Title</label>
+        <div class="controls">
+            <input name="title" type="text" value="" placeholder="Name your post"/>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="message">Message</label>
+        <div class="controls">
+            <textarea name="message" type="text" value=""/>
+        </div>
+    </div> 
+
+    <div class="control-group">
+        <div class="controls">
+            <input type="submit" value="Submit" class="btn btn-primary"/>
+        </div>
+    </div>
+  </form>
 </template>

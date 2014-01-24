@@ -1,0 +1,28 @@
+<!-- views/application/layout.html
+===
+=== This Meteor application's html layout page. This site's "digital photo frame".
+=== 
+=== 
+=== Provides:
+===
+===   {{> layout}} - the site's layout template
+===
+=== 
+=== last-modified: <2014-01-23 17:05:42 golden@golden-garage.net>
+-->
+<template name="layout">
+  <body>
+    <div class="container">
+
+      {{> header}}
+
+      <div id="main" class="row-fluid">
+
+        <!-- route templates are injected at the yield marker -->
+        {{yield}}
+
+      </div>
+
+    </div>
+  </body>
+</template>

@@ -1,30 +1,35 @@
-// client/views/note.js
+// client/views/notes/note.js
+//
 // 
-//
 // The Meteor template helper for note.html.
-//
-//
-// Requires:
-//
-//   this       - the note
-//   this.url   - the note's URL
-//
 //
 // Provides:
 //
-//   {{domain}} - the domain name of the note's URL
+//   'submit form' - event handler
 //
 //
-// last-modified: <2014-01-23 11:57:32 golden@golden-garage.net>
+// last-modified: <2014-01-24 09:28:42 golden@golden-garage.net>
 //
-Template.note.helpers( 
-{
-    domain: function() 
+
+
+Template.noteCreate.events( 
     {
-        var a = document.createElement( 'a' );
+        'submit form': function (e)
+        {
+            e.preventDefault();
+            
+            var note = 
+                {
+                    message: $(e.target).find( '[name=message]' ).val(),
+                      title: $(e.target).find( '[name=title]'   ).val(),
+                        url: $(e.target).find( '[name=url]'     ).val()
+                };
 
-        a.href = this.url;
+            Meteor.call( 'create', note, function( error, id )
+                         {
+                             if ( error ) return alert( error.reason );
 
-        return a.hostname;
-    }
-});
+                             Router.go( 'note', { _id: id } );
+                         });
+        }
+    });

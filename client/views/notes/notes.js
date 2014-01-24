@@ -1,4 +1,4 @@
-// client/views/notes.js
+// client/views/notes/notes.js
 //
 // 
 // The Meteor template helper for notes.html.
@@ -13,24 +13,27 @@
 //                 .url     - the note's reference URL
 //
 //
-// last-modified: <2014-01-23 12:19:28 golden@golden-garage.net>
+// last-modified: <2014-01-24 08:55:01 golden@golden-garage.net>
 //
-var notesData = [
-    {
-        author: 'Sacha Greif',
-         title: 'Introducing Telescope',
-           url: 'http://sachagreif.com/introducing-telescope/'
-    }, 
-    {
-        author: 'Tom Coleman',
-         title: 'Meteor',
-           url: 'http://meteor.com'
-    }, 
-    {
-        author: 'Tom Coleman',
-         title: 'The Meteor Book',
-           url: 'http://themeteorbook.com'
-    }
-];
 
-Template.notes.helpers( { notes: notesData } );
+
+Template.notes.helpers( 
+    { 
+        notes: function () 
+        { 
+            return Notes.find( {}, { sort: { created: -1 } } ); 
+        } 
+    });
+
+
+Template.notesEach.helpers( 
+    {
+        domain: function() 
+        {
+            var a = document.createElement( 'a' );
+            
+            a.href = this.url;
+            
+            return a.hostname;
+        }
+    });

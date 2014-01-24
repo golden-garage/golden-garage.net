@@ -1,20 +1,48 @@
-<!-- client/views/notes.html
+<!-- client/views/notes/notes.html
 ===  
-===  The Meteor template for listing notes.
-===
-===  Requires:
-===
-===    {{notes}}  - the notes
-===
-===    {{> note}} - a template for displaying each note in the list
+===  The notes list.
 ===
 ===
-===  last-modified: <2014-01-23 12:01:11 golden@golden-garage.net>
+===  Two templates:
+===
+===    notes        - display the notes list
+===    notesEach    - display each note in the list
+===
+===
+===  notes Requires:
+===
+===    {{notes}}    - the notes
+===
+===    {{> note}}   - a template for displaying each note in the list
+===
+===
+===  notesEach Requires:
+===
+===    this         - a note
+===
+===    this.domain  - the note's domain                 {{domain}}
+===    this.title   - the note's title                  {{title}}
+===    this.url     - the note's reference URL          {{url}}
+===
+===
+===  last-modified: <2014-01-23 22:12:17 golden@golden-garage.net>
 -->
+
+<!-- display the notes list -->
 <template name="notes">
   <div class="notes">
     {{#each notes}}
-      {{> note}}
+      {{> notesEach}}
     {{/each}}
+  </div>
+</template>
+
+<!-- display one note in the notes list -->
+<template name="notesEach">
+  <div class="note">
+    <div class="note-content">
+      <h3><a href="{{url}}">{{title}}</a><span>{{domain}}</span></h3>
+    </div>
+    <a href="{{pathFor 'note'}}" class="discuss btn">Discuss</a>
   </div>
 </template>
