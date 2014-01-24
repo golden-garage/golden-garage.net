@@ -8,28 +8,73 @@
 //   'submit form' - event handler
 //
 //
-// last-modified: <2014-01-24 09:28:42 golden@golden-garage.net>
+// last-modified: <2014-01-24 12:43:13 golden@golden-garage.net>
 //
 
 
 Template.noteCreate.events( 
     {
-        'submit form': function (e)
+        'submit form': function ( event )
         {
-            e.preventDefault();
+            event.preventDefault();
             
             var note = 
                 {
-                    message: $(e.target).find( '[name=message]' ).val(),
-                      title: $(e.target).find( '[name=title]'   ).val(),
-                        url: $(e.target).find( '[name=url]'     ).val()
+                    message: $(event.target).find( '[name=message]' ).val(),
+                      title: $(event.target).find( '[name=title]'   ).val(),
+                        url: $(event.target).find( '[name=url]'     ).val()
                 };
 
             Meteor.call( 'create', note, function( error, id )
                          {
                              if ( error ) return alert( error.reason );
 
-                             Router.go( 'note', { _id: id } );
+                             Router.go( 'notes' );
+                         });
+        }
+    });
+
+Template.noteEdit.events( 
+    {
+        'submit form': function ( event )
+        {
+            event.preventDefault();
+            
+            var noteId = this._id;
+            
+            var note = 
+                {
+                        _id: noteId,
+                      title: $(event.target).find( '[name=title]'   ).val(),
+                        url: $(event.target).find( '[name=url]'     ).val()
+                };
+
+            Meteor.call( 'update', note, function( error, id )
+                         {
+                             if ( error ) return alert( error.reason );
+
+                             Router.go( 'notes' );
+                         });
+        },
+
+        'click .delete': function ( event )
+        {
+            event.preventDefault();
+            
+            var currentNoteId = this._id;
+            
+            var note = 
+                {
+                        _id: this._id,
+                      title: $(event.target).find( '[name=title]'   ).val(),
+                        url: $(event.target).find( '[name=url]'     ).val()
+                };
+
+            Meteor.call( 'delete', note, function( error )
+                         {
+                             if ( error ) return alert( error.reason );
+
+                             Router.go( 'notes' );
                          });
         }
     });

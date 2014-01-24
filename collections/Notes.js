@@ -13,17 +13,19 @@
 //                 .url     - the note's reference URL
 //
 //
-// last-modified: <2014-01-24 09:03:00 golden@golden-garage.net>
+// last-modified: <2014-01-24 13:25:34 golden@golden-garage.net>
 //
 
 Notes = new Meteor.Collection( 'notes' );
 
 Notes.allow({
+    insert: function ( userId, doc ) { return !! userId; },
+    update: function ( userId, doc ) { return doc && doc.userId === userId; },
+    remove: function ( userId, doc ) { return doc && doc.userId === userId; }
+});
 
-    insert: function ( userId, doc )
-    {
-        return !! userId;
-    }
+Notes.deny({
+    update: function( userId, attrNames ) { return _.without( attrNames, 'url', 'title' ).length > 0; }
 });
 
 Meteor.methods({
@@ -43,21 +45,43 @@ Meteor.methods({
             if ( existingNote ) throw new Meteor.Error( 302, "That URL already exists.", existingNote._id );
         }
             
-        // REQ: note must have a title
+        // REQ: must have a title
         if ( ! attrs.title ) throw new Meteor.Error( 422, "Please include a title." );
 
-        
+        // REQ: created Note may only have these values
         var filteredAttrs = _.pick( attrs, "url", "title", "message" );
 
+        // add server-side attributes to Note
         var note = _.extend( filteredAttrs, { 
 
-            userId: user._id,
-            author: user.username,
-            created: new Date().getTime()
+             author: user.username,
+            created: new Date().getTime(),
+             userId: user._id
         });
 
         var noteId = Notes.insert( note );
 
         return noteId;
+    },
+
+    update: function ( attrs )
+    {
+        var noteId = attrs._id;
+
+        // REQ: a Note may only update these values
+        var filteredAttrs = _.pick( attrs, "url", "title" );
+
+        Notes.update( noteId, { $set: filteredAttrs }, 
+                      function ( error )
+                      {
+                          if ( error ) throw new Meteor.Error( 400, error.reason );
+                      });
+    },
+
+    delete: function ( attrs )
+    {
+        var noteId = attrs._id;
+
+        Notes.remove( noteId );
     }
 });

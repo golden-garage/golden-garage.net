@@ -13,7 +13,7 @@
 //                 .url     - the note's reference URL
 //
 //
-// last-modified: <2014-01-24 08:55:01 golden@golden-garage.net>
+// last-modified: <2014-01-24 12:31:19 golden@golden-garage.net>
 //
 
 
@@ -35,5 +35,10 @@ Template.notesEach.helpers(
             a.href = this.url;
             
             return a.hostname;
+        },
+
+        ownNote: function()
+        {
+            return this.userId === Meteor.userId();
         }
     });

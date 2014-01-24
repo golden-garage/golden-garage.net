@@ -25,7 +25,7 @@
 ===    this.url     - the note's reference URL          {{url}}
 ===
 ===
-===  last-modified: <2014-01-23 22:12:17 golden@golden-garage.net>
+===  last-modified: <2014-01-24 12:31:48 golden@golden-garage.net>
 -->
 
 <!-- display the notes list -->
@@ -42,6 +42,10 @@
   <div class="note">
     <div class="note-content">
       <h3><a href="{{url}}">{{title}}</a><span>{{domain}}</span></h3>
+      <p> 
+        submitted by {{author}}
+        {{#if ownNote}}<a href="{{pathFor 'noteEdit'}}">Edit</a>{{/if}}
+      </p>
     </div>
     <a href="{{pathFor 'note'}}" class="discuss btn">Discuss</a>
   </div>

@@ -7,8 +7,9 @@
 //   Notes - the notes collection
 //
 //
-// last-modified: <2014-01-23 14:09:26 golden@golden-garage.net>
+// last-modified: <2014-01-24 11:28:49 golden@golden-garage.net>
 //
+
 if ( Notes.find().count() === 0 ) 
 {
     Notes.insert({
@@ -29,3 +30,17 @@ if ( Notes.find().count() === 0 )
            url: 'http://themeteorbook.com'
     });
 }
+
+/*
+if ( Users.find().count() === 0 )
+{
+    Accounts.createUser({
+        username: 'golden',
+           email: 'golden@golden-garage.net',
+        password: 'setst',
+         profile: {
+            name: 'Rick Golden'
+        }
+    });
+}
+*/
