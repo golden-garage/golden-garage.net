@@ -1,35 +1,25 @@
-<!-- client/views/notes/notes.html
+<!-- client/views/notes/Notes.html
 ===  
-===  The notes list.
+===  The Notes templates.
 ===
 ===
-===  Two templates:
+===  Templates:
 ===
-===    notes        - display the notes list
-===    notesEach    - display each note in the list
+===    notes        - display the Notes list
+===    notesEach    - display each Note in the list
 ===
-===
-===  notes Requires:
-===
-===    {{notes}}    - the notes
-===
-===    {{> note}}   - a template for displaying each note in the list
+===    noteDetail   - display an individual Note in detail
+===    noteCreate   - display a form for creating a new Note
+===    noteEdit     - display a form for editing an existing Note
 ===
 ===
-===  notesEach Requires:
-===
-===    this         - a note
-===
-===    this.domain  - the note's domain                 {{domain}}
-===    this.title   - the note's title                  {{title}}
-===    this.url     - the note's reference URL          {{url}}
-===
-===
-===  last-modified: <2014-01-24 12:31:48 golden@golden-garage.net>
+===  last-modified: <2014-01-25 15:00:38 golden@golden-garage.net>
 -->
 
-<!-- display the notes list -->
-<template name="notes">
+<!-- ___ notes templates _______________________________________________________________________________________ -->
+<!-- {{{ >notesList   >notesEach                                              - display the notes list           -->
+
+<template name="notesList">
   <div class="notes">
     {{#each notes}}
       {{> notesEach}}
@@ -37,7 +27,9 @@
   </div>
 </template>
 
-<!-- display one note in the notes list -->
+<!-- }}} -->
+<!-- {{{ >notesEach   author, domain, ownNote, title, url ->noteEdit, ->note  - display one note in the list     -->
+
 <template name="notesEach">
   <div class="note">
     <div class="note-content">
@@ -47,6 +39,84 @@
         {{#if ownNote}}<a href="{{pathFor 'noteEdit'}}">Edit</a>{{/if}}
       </p>
     </div>
-    <a href="{{pathFor 'note'}}" class="discuss btn">Discuss</a>
+    <a href="{{pathFor 'noteDetail'}}" class="discuss btn">Discuss</a>
   </div>
 </template>
+
+<!-- }}} -->
+
+<!-- ___ note template _________________________________________________________________________________________ -->
+<!-- {{{ >noteDetail  >notesEach                                              - display a Note in detail         -->
+
+<template name="noteDetail">
+  {{> notesEach}}
+</template>
+
+<!-- }}} -->
+<!-- {{{ >noteCreate                                                          - display a create Note form       -->
+
+<template name="noteCreate">
+  <form class="main">
+    <div class="control-group">
+        <label class="control-label" for="url">URL</label>
+        <div class="controls">
+            <input name="url" type="text" value="" placeholder="Your URL"/>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="title">Title</label>
+        <div class="controls">
+            <input name="title" type="text" value="" placeholder="Name your post"/>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="message">Message</label>
+        <div class="controls">
+            <textarea name="message" type="text" value=""/>
+        </div>
+    </div> 
+
+    <div class="control-group">
+        <div class="controls">
+            <input type="submit" value="Submit" class="btn btn-primary"/>
+        </div>
+    </div>
+  </form>
+</template>
+
+<!-- }}} -->
+<!-- {{{ >noteEdit    title, url                                              - display an edit Note form        -->
+
+<template name="noteEdit">
+  <form class="main">
+    <div class="control-group">
+        <label class="control-label" for="url">URL</label>
+        <div class="controls">
+            <input name="url" type="text" value="{{url}}" placeholder="Your URL"/>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="title">Title</label>
+        <div class="controls">
+            <input name="title" type="text" value="{{title}}" placeholder="Name your post"/>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <div class="controls">
+            <input type="submit" value="Submit" class="btn btn-primary submit"/>
+        </div>
+    </div>
+    <hr/>
+    <div class="control-group">
+        <div class="controls">
+            <a class="btn btn-danger delete" href="#">Delete post</a>
+        </div>
+    </div>
+  </form>
+</template>
+
+<!-- }}} -->

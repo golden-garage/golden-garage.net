@@ -115,3 +115,19 @@ body {
     text-decoration: none;
     background: rgba(0, 0, 0, 0.1);
 }
+
+div .nav-new
+{
+    padding-top: 13px;
+}
+
+div .nav-settings
+{
+    padding-top: 25px;
+    padding-right: 5px;
+}
+
+div .nav-login
+{
+    padding-top: 15px;
+}

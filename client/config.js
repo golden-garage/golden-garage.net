@@ -1,13 +1,16 @@
 // client/config.js
 //
-// Configure the Meteor platform (client only).
+// Configure the client-side of the Meteor platform.
 //
 // Configures:
 //
-//   Accounts.ui
+//   Accounts.ui                         - restrict logins to username only (no email signups)
+//
+//   {{> _loginButtonsLoggedIn  }}       - change button text to 'Logout'
+//   {{> _loginButtonsLoggedOut }}       - change button text to 'Login'
 //
 //
-// last-modified: <2014-01-24 13:38:38 golden@golden-garage.net>
+// last-modified: <2014-01-26 08:17:36 golden@golden-garage.net>
 //
 
 Accounts.ui.config(

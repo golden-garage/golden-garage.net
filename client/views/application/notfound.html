@@ -1,15 +1,20 @@
-<!-- views/application/loading.html
+<!-- client/views/application/loading.html
 ===
-=== This Meteor application's "loading..." page cover. Used when waiting for the server.
+=== The application's "loading..." page. 
+===
+=== Used when waiting for the server.
 === 
 === 
 === Provides:
 ===
-===   {{> loading}} - the site's loading template (a spinner)
+===   {{> loading}} - the application's loading page
 ===
 === 
-=== last-modified: <2014-01-24 13:12:06 golden@golden-garage.net>
+=== last-modified: <2014-01-25 13:30:42 golden@golden-garage.net>
+===
+=== TODO: Change template to display a spinner for 2 second before displaying message.
+===       When deleting a Note, {{> notfound}} is briefly displayed, before Router goes to notesList.
 -->
 <template name="notfound">
-  This route is not valid. Try navigating back to the <a href="{{pathFor 'notes'}}">root of the site</a>.
+  This route is not valid. Try navigating back to the <a href="{{pathFor 'notesList'}}">root of the site</a>.
 </template>

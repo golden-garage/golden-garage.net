@@ -1,14 +1,19 @@
-<!-- views/application/layout.html
+<!-- client/views/application/layout.html
 ===
-=== This Meteor application's html layout page. This site's "digital photo frame".
+=== The application's basic layout, its "digital photo frame".
 === 
+=== The Router will inject an appropriate route template at {{yield}}.
+===
+=== This template will frame other the templates. 
+=== The other application templates are injected into this template.
+===
 === 
 === Provides:
 ===
-===   {{> layout}} - the site's layout template
+===   {{> layout}} - the application's "digital photo frame"
 ===
 === 
-=== last-modified: <2014-01-23 17:05:42 golden@golden-garage.net>
+=== last-modified: <2014-01-25 13:25:32 golden@golden-garage.net>
 -->
 <template name="layout">
   <body>
