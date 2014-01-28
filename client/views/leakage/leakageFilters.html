@@ -1,0 +1,77 @@
+<!-- client/views/leakage/leakageFilters.html
+===  
+===  The leakageFilters templates.
+===
+===
+===  Templates:
+===
+===
+===
+===  last-modified: <2014-01-27 16:05:53 golden@golden-garage.net>
+-->
+
+<template name="leakageFilters">
+  <div id="leakage-filters" class="col-md-2"><!-- filter controls -->
+
+    <form>
+
+      <fieldset> 
+
+        {{> leakageFilterPatient   }}
+
+        <br>
+
+        {{> leakageFilterPhysician }}
+
+        <br>
+
+        {{> leakageFilterServices  }}
+
+      </fieldset>
+
+    </form>
+
+  </div>
+</template>
+
+<template name="leakageFilterPatient">
+
+  <h4> Patient Type </h4>
+
+  <label class="checkbox">
+    <input type="checkbox" value="M"> Managed
+  </label>
+
+  <label class="checkbox">
+    <input type="checkbox" value="U"> Unmanaged
+  </label>
+
+</template>
+
+<template name="leakageFilterPhysician">
+
+  <h4> Physician Type </h4>
+
+  <label class="checkbox">
+    <input type="checkbox" value="E"> Employed 
+  </label>
+
+  <label class="checkbox">
+    <input type="checkbox" value="A"> Affiliated
+  </label>
+
+</template>
+
+<template name="leakageFilterServices">
+
+  <h4> Services </h4>
+
+  <label class="checkbox">
+    <input type="checkbox" value="O"> Offered
+  </label>
+
+  <label class="checkbox">
+    <input type="checkbox" value="N"> Not offered
+  </label>
+
+</template>

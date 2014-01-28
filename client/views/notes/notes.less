@@ -1,0 +1,77 @@
+.notes
+{
+}
+
+.note {
+    *zoom: 1;
+    -webkit-transition: all 300ms 0ms;
+    -webkit-transition-delay: ease-in;
+    -moz-transition: all 300ms 0ms ease-in;
+    -o-transition: all 300ms 0ms ease-in;
+    transition: all 300ms 0ms ease-in;
+    position: relative;
+    opacity: 1;
+}
+
+.note:before, .note:after {
+    content: "";
+    display: table;
+}
+
+.note:after { clear: both; }
+
+.note .invisible { opacity: 0; }
+
+.note .upvote {
+    display: block;
+    margin: 7px 12px 0 0;
+    float: left;
+}
+
+.note .note-content { float: left; }
+
+.note .note-content h3 {
+    margin: 0;
+    line-height: 1.4;
+    font-size: 18px;
+}
+
+.note .note-content h3 a {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.note .note-content h3 span {
+    font-weight: normal;
+    font-size: 14px;
+    display: inline-block;
+    color: #aaaaaa;
+}
+
+.note .note-content p { margin: 0; }
+
+.note .discuss {
+    display: block;
+    float: right;
+    margin-top: 7px;
+}
+
+.comments {
+    list-style-type: none;
+    margin: 0;
+}
+
+.comments li h4 {
+    font-size: 16px;
+    margin: 0;
+}
+
+.comments li h4 .date {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.comments li h4 a { font-size: 12px; }
+
+.comments li p:last-child { margin-bottom: 0; }
+

@@ -1,0 +1,33 @@
+<!-- client/views/application/layout.html
+===
+=== The application's basic layout, its "digital photo frame".
+=== 
+=== The Router will inject an appropriate route template at {{yield}}.
+===
+=== This template will frame other the templates. In other words,
+=== the other application templates are injected into this template.
+===
+=== 
+=== Provides:
+===
+===   {{> layout}} - the application's "digital photo frame"
+===
+=== 
+=== last-modified: <2014-01-27 14:00:23 golden@golden-garage.net>
+-->
+<template name="layout">
+  <body>
+    <div class="container">
+
+      {{> header}}
+      {{> errors}}
+
+      <div id="main" class="row-fluid">
+
+        {{yield}}
+
+      </div>
+
+    </div>
+  </body>
+</template>

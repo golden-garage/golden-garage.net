@@ -1,0 +1,50 @@
+<!-- client/views/leakage/leakageData.html
+===  
+===  The Leakage Data templates.
+===
+===
+===  Templates:
+===
+===
+===
+===  last-modified: <2014-01-27 16:06:27 golden@golden-garage.net>
+-->
+
+<template name="leakageData">
+
+  {{> leakageFilters}}
+
+  <div id="leakageData" class="col-md-10"><!-- leakage data -->
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr class="dataHeader">
+          <th class="text-center"> date      </th>
+          <th class="text-center"> claimId   </th>
+          <th class="text-center"> amount    </th>
+          <th class="text-center"> network   </th>
+          <th class="text-center"> patient   </th>
+          <th class="text-center"> physician </th>
+          <th class="text-center"> service   </th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each leakageData}}
+        {{> leakageDataRow}}
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+</template>
+
+<template name="leakageDataRow">
+  <tr class="dataRow">
+    <td class="text-center">{{ fmtDate      }}</td>
+    <td class="text-center">{{ claimId      }}</td>
+    <td class="text-right" >{{ fmtAmount    }}</td>
+    <td class="text-center">{{ fmtNetwork   }}</td>
+    <td class="text-center">{{ fmtPatient   }}</td>
+    <td class="text-center">{{ fmtPhysician }}</td>
+    <td class="text-center">{{ fmtService   }}</td>
+  </tr>
+</template>

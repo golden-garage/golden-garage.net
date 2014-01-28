@@ -1,0 +1,31 @@
+<!-- client/views/application/error.html
+===
+=== The application's exception templates.
+=== 
+=== 
+=== Provides:
+===
+===   {{> accessDenied}} - access denied (login required)
+===
+=== 
+=== last-modified: <2014-01-27 15:59:20 golden@golden-garage.net>
+-->
+
+<template name="errors">
+  <div id="errors" class="errors row-fluid">
+    {{#each errors}}
+      {{> error}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="error">
+  <div class="alert alert-error">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{message}}
+  </div>
+</template>
+
+<template name="accessDenied">
+  <div class="alert alert-error">Please, <b>Login</b>.</div>
+</template>

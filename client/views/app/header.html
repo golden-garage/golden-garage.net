@@ -1,0 +1,89 @@
+<!-- client/views/application/header.html
+===
+=== The application's page header.
+=== 
+=== Includes: the brand button, the navigation bar and the login button.
+=== 
+=== Provides:
+===
+===   {{> header}} - the site's peage header template
+===
+=== 
+=== last-modified: <2014-01-27 08:36:13 golden@golden-garage.net>
+-->
+<template name="header">
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+
+      <div class="navbar-header">
+
+        <!-- navigation toggle for small screens -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-menu">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <!-- site name -->
+        <a class="navbar-brand" href="{{pathFor 'home'}}">
+          <table><tr>
+              <td class="navbar-brand-icon">
+                <i class="fa fa-cogs"></i>
+              </td>
+              <td  class="navbar-brand-title">
+                &nbsp;golden&#8209;garage.net
+              </td>
+          </tr></table>
+        </a>
+
+      </div>
+
+      <!-- menu items -->
+      <div id="header-menu" class="collapse navbar-collapse">
+
+        <ul class="nav navbar-nav">
+
+          <!-- Notes -->
+          <li class="{{activeRouteClass 'notesList'}}">
+            <a href="{{pathFor 'notesList'}}">Notes</a>
+          </li>
+          
+          <!-- New Note -->
+          {{#whenLoggedInAt 'notesList'}}
+          <li class="small {{activeRouteClass 'noteCreate'}}">
+            <a href="{{pathFor 'noteCreate'}}"><small>New Note</small></a>
+          </li>
+          {{/whenLoggedInAt}}
+          
+          <!-- Leakage -->
+          {{#whenLoggedIn}}
+          <li  class="{{activeRouteClass 'leakage'}}">
+            <a href="{{pathFor 'leakage'}}">Leakage</a>
+          </li>
+          {{/whenLoggedIn}}
+
+          <!-- New Note -->
+          {{#whenLoggedInAt 'leakage'}}
+          <li class="small {{activeRouteClass 'leakageData'}}">
+            <a href="{{pathFor 'leakageData'}}"><small>Data</small></a>
+          </li>
+          {{/whenLoggedInAt}}
+          
+        </ul>
+        
+        <ul class="nav navbar-nav navbar-right">
+
+          <!-- settings -->
+          {{#whenLoggedIn}}<li id="navbar-settings" class="dropdown"><a href="#"<i class="fa fa-cog"></i></a></li>{{/whenLoggedIn}}
+
+          <!-- user/login pull down -->
+          {{loginButtons}}
+
+        </ul>
+
+      </div>
+
+    </div>
+  </div>
+</template>
