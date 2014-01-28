@@ -13,7 +13,7 @@
 //                 .url     - the note's reference URL
 //
 //
-// last-modified: <2014-01-25 12:46:28 golden@golden-garage.net>
+// last-modified: <2014-01-27 13:51:33 golden@golden-garage.net>
 //
 
 
@@ -56,9 +56,14 @@ Template.noteCreate.events(
                         url: $(event.target).find( '[name=url]'     ).val()
                 };
 
-            Meteor.call( 'create', note, function( error, id )
+            Meteor.call( 'createNote', note, function( error, id )
                          {
-                             if ( error ) return alert( error.reason );
+                             if ( error ) 
+                             {
+                                 throwError( error.reason );
+                                 
+                                 Router.go( 'noteDetail', { _id: error.error === 302 ? error.details : id } );
+                             }
 
                              Router.go( 'notesList' );
                          });
@@ -80,9 +85,14 @@ Template.noteEdit.events(
                         url: $(event.target).find( '[name=url]'     ).val()
                 };
 
-            Meteor.call( 'update', note, function( error, id )
+            Meteor.call( 'updateNote', note, function( error, id )
                          {
-                             if ( error ) return alert( error.reason );
+                             if ( error ) 
+                             {
+                                 throwError( error.reason );
+                                 
+                                 Router.go( 'noteDetail', { _id: id } );
+                             }
 
                              Router.go( 'notesList' );
                          });
@@ -101,9 +111,9 @@ Template.noteEdit.events(
                         url: $(event.target).find( '[name=url]'     ).val()
                 };
 
-            Meteor.call( 'delete', note, function( error )
+            Meteor.call( 'deleteNote', note, function( error )
                          {
-                             if ( error ) return alert( error.reason );
+                             if ( error ) return throwError( error.reason );
 
                              Router.go( 'notesList' );
                          });
