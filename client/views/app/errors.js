@@ -8,7 +8,7 @@
 //   {{errors}} - a list of application errors
 //
 //
-// last-modified: <2014-01-27 13:44:01 golden@golden-garage.net>
+// last-modified: <2014-01-27 16:37:05 golden@golden-garage.net>
 //
 
 Template.errors.helpers({
@@ -17,3 +17,15 @@ Template.errors.helpers({
         return Errors.find();
     }
 });
+
+Template.errors.rendered = function () 
+{
+    var error = this.data;
+
+    Meteor.defer( 
+        function ()
+        {
+            Errors.update( error._id, { $set: { see: true } } );
+        }
+    );
+};

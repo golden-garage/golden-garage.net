@@ -8,8 +8,17 @@
 //   leakageData - the entire LeakageData collection
 //
 //
-// last-modified: <2014-01-27 12:59:38 golden@golden-garage.net>
+// last-modified: <2014-01-27 22:05:00 golden@golden-garage.net>
 //
 
-Meteor.subscribe( 'notes'       );
-Meteor.subscribe( 'leakageData' );
+Meteor.subscribe( 'notes'               );
+Meteor.subscribe( 'leakageData'         );
+Meteor.subscribe( 'filteredLeakageData' );
+
+
+// initialize session
+
+Session.set( 'leakageData.networkFilter',   [ "I", "O" ] );
+Session.set( 'leakageData.patientFilter',   [ "M", "U" ] );
+Session.set( 'leakageData.physicianFilter', [ "E", "A" ] );
+Session.set( 'leakageData.serviceFilter',   [ "O", "N" ] );

@@ -8,7 +8,7 @@
 //   leakageData - the entire LeakageData collection
 //
 //
-// last-modified: <2014-01-27 12:55:31 golden@golden-garage.net>
+// last-modified: <2014-01-27 17:22:55 golden@golden-garage.net>
 //
 
 Meteor.publish( 'notes', 
@@ -24,5 +24,13 @@ Meteor.publish( 'leakageData',
                 function () 
                 {
                     return LeakageData.find();
+                }
+              );
+
+Meteor.publish( 'filteredLeakageData', 
+
+                function ( network ) 
+                {
+                    return LeakageData.find( { network: network } );
                 }
               );

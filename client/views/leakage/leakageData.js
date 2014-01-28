@@ -7,14 +7,25 @@
 //
 //
 //
-// last-modified: <2014-01-27 14:57:17 golden@golden-garage.net>
+// last-modified: <2014-01-27 22:06:18 golden@golden-garage.net>
 //
 
 Template.leakageData.helpers( 
     { 
         leakageData: function () 
         { 
-            return LeakageData.find( {}, { sort: { date: 1 } } ); 
+            var patientFilter   = Session.get( 'leakageData.patientFilter'   );
+            var physicianFilter = Session.get( 'leakageData.physicianFilter' );
+            var serviceFilter   = Session.get( 'leakageData.serviceFilter'   );
+
+            var      selector = {   patient: { $in: patientFilter   },
+                                  physician: { $in: physicianFilter },
+                                    service: { $in: serviceFilter   }
+                                };
+
+            var   leakageData = LeakageData.find( selector, { sort: { date: 1 } } ); 
+
+            return leakageData;
         }
 
     });
@@ -22,9 +33,14 @@ Template.leakageData.helpers(
 
 Template.leakageDataRow.helpers( 
     { 
+        leakageDataCount: function ()
+        {
+            return 0; //leakageData.count();
+        },
+
         fmtDate: function ()
         {
-            return moment( this.date ).format( "YYYY MMM DD" );
+            return moment( this.date ).format( "DD-MMM-YYYY" );
         },
 
         fmtAmount: function ()
@@ -32,25 +48,10 @@ Template.leakageDataRow.helpers(
             return this.amount.toLocaleString( "en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2 } );
         },
 
-        fmtNetwork: function ()
-        {
-            return this.network   === "I" ? "In"       : ( this.network === "O" ? "Out"         : "UNKOWN! " + this.network   );
-        },
-
-        fmtPatient: function ()
-        {
-            return this.patient   === "M" ? "Managed"  : ( this.network === "U" ? "Unmanaged"   : "UNKOWN! " + this.patient   );
-        },
-
-        fmtPhysician: function ()
-        {
-            return this.physician === "E" ? "Employed" : ( this.network === "A" ? "Affiliated"  : "UNKOWN! " + this.physician );
-        },
-
-        fmtService: function ()
-        {
-            return this.service   === "O" ? "Offered"  : ( this.network === "N" ? "Not offered" : "UNKOWN! " + this.service   );
-        }
+        fmtNetwork:   function () { return { I: "In",       O: "Out"         }[ this.network   ]; },
+        fmtPatient:   function () { return { M: "Managed",  U: "Unmanaged"   }[ this.patient   ]; },
+        fmtPhysician: function () { return { E: "Employed", A: "Affiliated"  }[ this.physician ]; },
+        fmtService:   function () { return { O: "Offered",  N: "Not offered" }[ this.service   ]; }
     });
 
 

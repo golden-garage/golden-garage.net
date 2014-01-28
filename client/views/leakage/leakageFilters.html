@@ -7,7 +7,7 @@
 ===
 ===
 ===
-===  last-modified: <2014-01-27 16:05:53 golden@golden-garage.net>
+===  last-modified: <2014-01-27 22:09:47 golden@golden-garage.net>
 -->
 
 <template name="leakageFilters">
@@ -25,7 +25,7 @@
 
         <br>
 
-        {{> leakageFilterServices  }}
+        {{> leakageFilterService   }}
 
       </fieldset>
 
@@ -35,43 +35,19 @@
 </template>
 
 <template name="leakageFilterPatient">
-
   <h4> Patient Type </h4>
-
-  <label class="checkbox">
-    <input type="checkbox" value="M"> Managed
-  </label>
-
-  <label class="checkbox">
-    <input type="checkbox" value="U"> Unmanaged
-  </label>
-
+  <label class="checkbox"> <input type="checkbox" value="M" {{ isCheckedPatient   'M' }}> Managed     </label>
+  <label class="checkbox"> <input type="checkbox" value="U" {{ isCheckedPatient   'U' }}> Unmanaged   </label>
 </template>
 
 <template name="leakageFilterPhysician">
-
   <h4> Physician Type </h4>
-
-  <label class="checkbox">
-    <input type="checkbox" value="E"> Employed 
-  </label>
-
-  <label class="checkbox">
-    <input type="checkbox" value="A"> Affiliated
-  </label>
-
+  <label class="checkbox"> <input type="checkbox" value="E" {{ isCheckedPhysician 'E' }}> Employed    </label>
+  <label class="checkbox"> <input type="checkbox" value="A" {{ isCheckedPhysician 'A' }}> Affiliated  </label>
 </template>
 
-<template name="leakageFilterServices">
-
+<template name="leakageFilterService">
   <h4> Services </h4>
-
-  <label class="checkbox">
-    <input type="checkbox" value="O"> Offered
-  </label>
-
-  <label class="checkbox">
-    <input type="checkbox" value="N"> Not offered
-  </label>
-
+  <label class="checkbox"> <input type="checkbox" value="O" {{ isCheckedService   'O' }}> Offered     </label>
+  <label class="checkbox"> <input type="checkbox" value="N" {{ isCheckedService   'N' }}> Not offered </label>
 </template>

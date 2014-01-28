@@ -8,7 +8,7 @@
 //   Notes       - the notes       collection
 //
 //
-// last-modified: <2014-01-27 14:03:13 golden@golden-garage.net>
+// last-modified: <2014-01-27 20:29:40 golden@golden-garage.net>
 //
 
 if ( Notes.find().count() === 0 ) 
@@ -55,10 +55,10 @@ if ( LeakageData.find().count() === 0 )
 
     var        duration = endTime - startTime;
 
-    var    networkTable = [ "I", "I", "I", "I", "I", "O",  "O",  "O",  "O" ];    // random selection tables
-    var    patientTable = [ "M", "M", "M", "M", "M", "M",  "U",  "U",  "U" ];    
-    var  physicianTable = [ "E", "E", "E", "E", "E", "E",  "E",  "A",  "A" ];
-    var    serviceTable = [ "O", "O", "O", "O", "O", "O",  "O",  "O",  "N" ];
+    var    networkTable = [ "I", "I", "I", "I", "I", "O",  "O",  "O",  "O", "O" ];    // random selection tables
+    var    patientTable = [ "M", "M", "M", "M", "M", "U",  "U",  "U",  "U", "U" ];    
+    var  physicianTable = [ "E", "E", "E", "E", "E", "A",  "A",  "A",  "A", "A" ];
+    var    serviceTable = [ "O", "O", "O", "O", "O", "N",  "N",  "N",  "N", "N" ];
 
     var     localRandom = Random.create( initialRandomSeed );
 
@@ -79,10 +79,10 @@ if ( LeakageData.find().count() === 0 )
                date: randomDate(),
             claimId: localRandom.id(),
              amount: randomAmount(),
-            network: localRandom.choice( networkTable ),
-            patient: localRandom.choice( patient      ),
-          physician: localRandom.choice( physician    ),
-            service: localRandom.choice( service      ),
+            network: localRandom.choice( networkTable   ),
+            patient: localRandom.choice( patientTable   ),
+          physician: localRandom.choice( physicianTable ),
+            service: localRandom.choice( serviceTable   ),
         });
     }
 }
