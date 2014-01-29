@@ -7,7 +7,7 @@
 ===
 ===
 ===
-===  last-modified: <2014-01-27 22:09:47 golden@golden-garage.net>
+===  last-modified: <2014-01-28 18:07:06 golden@golden-garage.net>
 -->
 
 <template name="leakageFilters">
@@ -26,6 +26,10 @@
         <br>
 
         {{> leakageFilterService   }}
+
+        <br>
+
+        {{> leakageFilterDates     }}
 
       </fieldset>
 
@@ -50,4 +54,33 @@
   <h4> Services </h4>
   <label class="checkbox"> <input type="checkbox" value="O" {{ isCheckedService   'O' }}> Offered     </label>
   <label class="checkbox"> <input type="checkbox" value="N" {{ isCheckedService   'N' }}> Not offered </label>
+</template>
+
+<template name="leakageFilterDates">
+  <h4> Months </h4>
+
+  <table id="leakageFilterDates">
+    <tbody>
+      <tr>
+        <td class="text-right"><label for="leakageFilterDatesStart">Start</label></td>
+        <td>
+          <select id="leakageFilterDatesStart"> 
+            {{#each startMonths}}
+              <option value="{{ date }}" {{selected}}>{{ month }}
+            {{/each}}
+          </select> 
+        </td>
+      <tr>
+        <td class="text-right"><label for="leakageFilterDatesEnd">End</label></td>
+        <td>
+          <select id="leakageFilterDatesEnd"> 
+            {{#each endMonths}}
+              <option value="{{ date }}" {{selected}}>{{ month }}
+            {{/each}}
+          </select> 
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
 </template>

@@ -8,7 +8,7 @@
 //   Notes       - the notes       collection
 //
 //
-// last-modified: <2014-01-27 20:29:40 golden@golden-garage.net>
+// last-modified: <2014-01-28 09:30:43 golden@golden-garage.net>
 //
 
 if ( Notes.find().count() === 0 ) 
@@ -73,10 +73,14 @@ if ( LeakageData.find().count() === 0 )
         return new Date( startTime + Math.floor( duration * localRandom.fraction() ) );
     }
 
+    var  date = randomDate();
+    var month = moment( date ).format( "YYYY-MM" );
+
     for ( var i = 0; i < initialRecordCount; i++ )
     {
         LeakageData.insert({
-               date: randomDate(),
+               date: date,
+              month: month,
             claimId: localRandom.id(),
              amount: randomAmount(),
             network: localRandom.choice( networkTable   ),
@@ -86,6 +90,14 @@ if ( LeakageData.find().count() === 0 )
         });
     }
 }
+
+// UPGRADE: LeakageData without months
+LeakageData.find( { month: { $exists: false } } ).forEach( 
+    function ( data )
+    {
+        LeakageData.update( { _id: data._id }, { $set: { month: moment( data.date ).format( "YYYY-MM" ) } } );
+    }
+);
 
 /*
 if ( Users.find().count() === 0 )

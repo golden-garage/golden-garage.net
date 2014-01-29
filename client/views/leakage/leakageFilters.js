@@ -7,7 +7,7 @@
 //
 //
 //
-// last-modified: <2014-01-27 22:05:45 golden@golden-garage.net>
+// last-modified: <2014-01-28 16:23:32 golden@golden-garage.net>
 //
 
 Template.leakageFilterPatient.events({
@@ -103,3 +103,87 @@ Template.leakageFilterService.helpers({
     }
 });
 
+Template.leakageFilterDates.helpers({
+
+    minMonth: function ()
+    {
+        return Session.get( "leakageData.minMonth" );
+    },
+
+    maxMonth: function ()
+    {
+        return Session.get( "leakageData.maxMonth" );
+    },
+
+    startMonths: function ()
+    {
+        var minDate = Session.get( "leakageData.minDate" );
+        var maxDate = Session.get( "leakageData.maxDate" );
+
+        var months = [];
+
+        var min = moment( minDate ).startOf( "month" );
+        var max = moment( maxDate ).endOf(   "month" );
+
+        for ( var m = moment( min ); m < max; m.add( 1, "month" ) )
+        {
+            var month = m.format( 'YYYY-MM' );
+
+            var isSelected = month === Session.get( "leakageFilterDates.selectedStartMonth" );
+
+            months.push( {     date: m.toISOString(), 
+                              month: month, 
+                           selected: isSelected ? "selected" : "", 
+                              label: month } );
+        }
+
+        return months;
+    },
+
+    endMonths: function ()
+    {
+        var minDate = Session.get( "leakageData.minDate" );
+        var maxDate = Session.get( "leakageData.maxDate" );
+
+        var months  = [];
+
+        var min     = moment( minDate ).startOf( "month" );
+        var max     = moment( maxDate ).endOf(   "month" );
+
+        for ( var m = moment( min ); m < max; m.add( 1, "month" ) )
+        {
+            var month = m.format( 'YYYY-MM' );
+
+            var isSelected = month === Session.get( "leakageFilterDates.selectedEndMonth" );
+
+            months.push( {     date: m.toISOString(), 
+                              month: month,
+                           selected: isSelected ? "selected" : "", 
+                              label: month } );
+        }
+
+        return months;
+    },
+
+});
+
+Template.leakageFilterDates.events({
+
+    'change #leakageFilterDatesStart': function ( event )
+    {
+        var startDate  = new Date( event.srcElement.value );
+        var startMonth = moment( startDate ).format( "YYYY-MM" );
+
+        Session.set( "leakageFilterDates.selectedStartDate",  startDate  );
+        Session.set( "leakageFilterDates.selectedStartMonth", startMonth );
+    },
+
+    'change #leakageFilterDatesEnd': function ( event )
+    {
+        var endDate  = new Date( event.srcElement.value );
+        var endMonth = moment( endDate ).format( "YYYY-MM" );
+
+        Session.set( "leakageFilterDates.selectedEndDate",  endDate  );
+        Session.set( "leakageFilterDates.selectedEndMonth", endMonth );
+    },
+});

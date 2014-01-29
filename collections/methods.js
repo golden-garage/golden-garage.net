@@ -7,10 +7,15 @@
 //
 //
 //
-// last-modified: <2014-01-27 11:19:13 golden@golden-garage.net>
+// last-modified: <2014-01-28 08:54:37 golden@golden-garage.net>
 //
 
 Meteor.methods({
+
+    totalLeakage: function ( attrs )
+    {
+        
+    },
 
     createNote: function ( attrs )
     {

@@ -7,18 +7,27 @@
 ===
 ===
 ===
-===  last-modified: <2014-01-27 19:51:32 golden@golden-garage.net>
+===  last-modified: <2014-01-28 18:21:48 golden@golden-garage.net>
 -->
 
 <template name="leakageData">
 
   {{> leakageFilters}}
 
-  <div id="leakageData" class="col-md-10"><!-- leakage data -->
-    <table class="table table-bordered table-striped">
+  <div id="leakageData" class="col-md-10">
+
+    <h3>
+      <i class="fa fa-arrows-alt"></i>&nbsp;Leakage&nbsp;Data ({{ leakageDataCount }})
+
+      {{> leakageDataPageLimit}}
+
+    </h3>
+    
+    <table class="table table-bordered table-striped" width="100%">
       <thead>
         <tr class="dataHeader">
           <th class="text-center"> date      </th>
+          <th class="text-center"> month     </th>
           <th class="text-center"> claimId   </th>
           <th class="text-center"> amount    </th>
           <th class="text-center"> network   </th>
@@ -32,14 +41,18 @@
         {{> leakageDataRow}}
         {{/each}}
       </tbody>
+      <tfoot>
+        {{> leakageDataNav}}
+      </tfoot>
     </table>
   </div>
 
 </template>
 
 <template name="leakageDataRow">
-  <tr class="dataRow">
+  <tr class="dataRow small">
     <td class="text-center">{{ fmtDate      }}</td>
+    <td class="text-center">{{ month        }}</td>
     <td class="text-center">{{ claimId      }}</td>
     <td class="text-right" >{{ fmtAmount    }}</td>
     <td class="text-center">{{ fmtNetwork   }}</td>
@@ -47,4 +60,26 @@
     <td class="text-center">{{ fmtPhysician }}</td>
     <td class="text-center">{{ fmtService   }}</td>
   </tr>
+</template>
+
+<template name="leakageDataPageLimit">
+  <div class="pull-right small">
+    <select id="leakageDataPageLimit"> 
+      {{#each limits}}
+      <option value="{{value}}" {{selected}}>{{value}}</option>
+      {{/each}}
+    </select> 
+  </div>
+</template>
+
+<template name="leakageDataNav">
+<tr>{{>leakageDataNavPrev}}{{>leakageDataNavNext}}</tr>
+</template>
+
+<template name="leakageDataNavPrev">
+<td colspan="4"><button class="button">prev</button></td>
+</template>
+
+<template name="leakageDataNavNext">
+<td class="text-right" colspan="4"><button class="button">next</button></td>
 </template>

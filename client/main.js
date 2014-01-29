@@ -8,17 +8,45 @@
 //   leakageData - the entire LeakageData collection
 //
 //
-// last-modified: <2014-01-27 22:05:00 golden@golden-garage.net>
+// last-modified: <2014-01-28 17:43:36 golden@golden-garage.net>
 //
 
-Meteor.subscribe( 'notes'               );
-Meteor.subscribe( 'leakageData'         );
-Meteor.subscribe( 'filteredLeakageData' );
+Meteor.subscribe( "notes"               );
+Meteor.subscribe( "leakageData"         );
+Meteor.subscribe( "filteredLeakageData" );
 
 
 // initialize session
 
-Session.set( 'leakageData.networkFilter',   [ "I", "O" ] );
-Session.set( 'leakageData.patientFilter',   [ "M", "U" ] );
-Session.set( 'leakageData.physicianFilter', [ "E", "A" ] );
-Session.set( 'leakageData.serviceFilter',   [ "O", "N" ] );
+var minDate = new Date( "2013-01-01 12:00" );
+var maxDate = new Date( "2013-12-31 12:00" );
+
+var minMonth = moment( minDate ).format( "YYYY-MM" );
+var maxMonth = moment( maxDate ).format( "YYYY-MM" );
+
+
+Session.set( "leakageSummary.startingMonth",   minMonth );
+Session.set( "leakageSummary.endingMonth",     maxMonth );
+
+
+Session.set( "leakageData.minDate",            minDate );
+Session.set( "leakageData.maxDate",            maxDate );
+
+Session.set( "leakageData.minMonth",           minMonth );
+Session.set( "leakageData.maxMonth",           maxMonth );
+
+Session.set( "leakageData.networkFilter",      [ "I", "O" ] );
+Session.set( "leakageData.patientFilter",      [ "M", "U" ] );
+Session.set( "leakageData.physicianFilter",    [ "E", "A" ] );
+Session.set( "leakageData.serviceFilter",      [ "O", "N" ] );
+
+Session.set( "leakageData.selectedPageLimit",  10 );
+Session.set( "leakageData.selectedPageSkip",    0 );
+
+
+Session.set( "leakageFilterDates.selectedStartDate",   minDate  );
+Session.set( "leakageFilterDates.selectedStartMonth",  minMonth );
+
+Session.set( "leakageFilterDates.selectedEndDate",     maxDate  );
+Session.set( "leakageFilterDates.selectedEndMonth",    maxMonth );
+

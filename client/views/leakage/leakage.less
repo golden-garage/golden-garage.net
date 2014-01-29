@@ -2,42 +2,75 @@
 {
     #leakage-datatable
     {      
-                   margin-left: -25px;
+        tbody, tfoot
+        {     
+            tr :not(:first-child)
+            {     
+                padding-right: 30px;
+            }
 
-      th
-      {
-                vertical-align: bottom;
-      }
-
-      tr :first-child
-      {
-                    text-align: center;
-                   font-weight: bold;
-      }
-
-      tr :not(:first-child)
-      {
-                 padding-right: 30px;
-      }
-
-      tr.ldtTotal :first-child
-      {
-                    text-align: right;
-      }
-
+            td
+            {
+                font-family: "Courier New", Courier, monospaced;
+                font-weight: bold;
+            }
+        }
     }
 }
 
 #leakage-filters
 {      
-                   padding-top: 60px;
+    padding-top: 60px;
+
+    #leakageFilterDates
+    {
+        tr :first-child
+        {
+            padding-left:  0px;
+            padding-right:  5px;
+        }
+    }
 }
 
 #leakageData
 {
-    td
+    table
     {
-                   font-family: "Courier New", Courier, monospaced;
-                   font-weight: bold;
+        border: 0;
+
+        thead
+        {
+            th
+            {
+                border:  0;
+                padding: 0;
+
+                border-bottom:  1px solid black;
+            }
+        }
+
+        tbody
+        {
+            td
+            {
+                font-family: "Courier New", Courier, monospaced;
+                font-weight: bold;
+            }
+        }
+        
+        tfoot
+        {
+            tr :first-child
+            {
+                border: 0;
+                padding-left:  30px;
+            }
+
+            tr :last-child
+            {
+                border: 0;
+                padding-right: 30px;
+            }
+        }
     }
 }
