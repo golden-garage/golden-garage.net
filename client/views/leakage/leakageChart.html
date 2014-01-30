@@ -1,0 +1,34 @@
+<!-- client/views/leakage/leakageChart.html
+===  
+===  The Leakage Chart templates.
+===
+===
+===  Templates:
+===
+===
+===
+===  last-modified: <2014-01-29 22:40:57 golden@golden-garage.net>
+-->
+
+<template name="leakageChart">
+
+  {{> leakageFilters}}
+
+  <div id="leakageChart" class="col-md-10">
+
+    <h3>
+      <i class="fa fa-arrows-alt"></i>&nbsp;Leakage&nbsp;Chart
+    </h3>
+    
+    {{> d3chart}}
+
+  </div>
+
+</template>
+
+
+<template name="d3chart">
+  <div class="d3div">
+    <svg id="d3svg"></svg>
+  </div>
+</template>
