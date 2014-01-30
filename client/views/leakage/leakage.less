@@ -2,17 +2,56 @@
 {
     #leakage-datatable
     {      
-        tbody, tfoot
-        {     
-            tr :not(:first-child)
-            {     
-                padding-right: 30px;
+        table
+        {
+            border: 0;
+
+            thead
+            {
+                th
+                {
+                    border:  0;
+                    padding: 0;
+
+                    border-bottom:  2px solid black;
+                }
             }
 
-            td
+            tbody
+            {     
+                tr :first-child
+                {
+                    border-left:  2px solid black;
+                }
+
+                tr :last-child
+                {
+                    border-right:  2px solid black;
+                }
+            }
+
+            tbody, tfoot
+            {     
+                tr :not(:first-child)
+                {     
+                    padding-right: 30px;
+                }
+
+                td
+                {
+                    font-family: "Courier New", Courier, monospaced;
+                    font-weight: bold;
+                }
+            }
+
+            tfoot
             {
-                font-family: "Courier New", Courier, monospaced;
-                font-weight: bold;
+                td
+                {
+                    border: 0;
+
+                    border-top:  2px solid black;
+                }
             }
         }
     }
@@ -26,7 +65,7 @@
     {
         tr :first-child
         {
-            padding-left:  0px;
+             padding-left:  0px;
             padding-right:  5px;
         }
     }
@@ -45,12 +84,22 @@
                 border:  0;
                 padding: 0;
 
-                border-bottom:  1px solid black;
+                border-bottom:  2px solid black;
             }
         }
 
         tbody
         {
+            tr :first-child
+            {
+                border-left:  2px solid black;
+            }
+
+            tr :last-child
+            {
+                border-right:  2px solid black;
+            }
+
             td
             {
                 font-family: "Courier New", Courier, monospaced;
@@ -62,14 +111,19 @@
         {
             tr :first-child
             {
-                border: 0;
                 padding-left:  30px;
             }
 
             tr :last-child
             {
-                border: 0;
                 padding-right: 30px;
+            }
+
+            td
+            {
+                border:  0;
+
+                border-top:  2px solid black;
             }
         }
     }

@@ -8,7 +8,7 @@
 //   leakageData - the entire LeakageData collection
 //
 //
-// last-modified: <2014-01-28 17:43:36 golden@golden-garage.net>
+// last-modified: <2014-01-29 12:04:25 golden@golden-garage.net>
 //
 
 Meteor.subscribe( "notes"               );
@@ -50,3 +50,17 @@ Session.set( "leakageFilterDates.selectedStartMonth",  minMonth );
 Session.set( "leakageFilterDates.selectedEndDate",     maxDate  );
 Session.set( "leakageFilterDates.selectedEndMonth",    maxMonth );
 
+Session.set( "leakageChart.months", [ { month: "2013-01", in: 10, out: 10 },
+                                      { month: "2013-02", in: 11, out: 10 },
+                                      { month: "2013-03", in: 12, out: 10 },
+                                      { month: "2013-04", in: 13, out: 10 },
+                                      { month: "2013-05", in: 14, out: 10 },
+                                      { month: "2013-06", in: 15, out: 10 },
+                                      { month: "2013-07", in: 16, out: 10 },
+                                      { month: "2013-08", in: 17, out: 10 },
+                                      { month: "2013-09", in: 18, out: 10 },
+                                      { month: "2013-10", in: 19, out: 10 },
+                                      { month: "2013-11", in: 20, out: 10 },
+                                      { month: "2013-12", in: 21, out: 10 },
+                                    ]
+           );

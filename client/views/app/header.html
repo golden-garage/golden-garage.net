@@ -9,7 +9,7 @@
 ===   {{> header}} - the site's peage header template
 ===
 === 
-=== last-modified: <2014-01-27 08:36:13 golden@golden-garage.net>
+=== last-modified: <2014-01-28 20:12:39 golden@golden-garage.net>
 -->
 <template name="header">
   <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -63,12 +63,19 @@
           </li>
           {{/whenLoggedIn}}
 
-          <!-- New Note -->
-          {{#whenLoggedInAt 'leakage'}}
+          <!-- Leakage Data -->
+          {{#whenLoggedInStartsWith 'leakage' }}
           <li class="small {{activeRouteClass 'leakageData'}}">
             <a href="{{pathFor 'leakageData'}}"><small>Data</small></a>
           </li>
-          {{/whenLoggedInAt}}
+          {{/whenLoggedInStartsWith}}
+          
+          <!-- Leakage Chart -->
+          {{#whenLoggedInStartsWith 'leakage' }}
+          <li class="small {{activeRouteClass 'leakageChart'}}">
+            <a href="{{pathFor 'leakageChart'}}"><small>Chart</small></a>
+          </li>
+          {{/whenLoggedInStartsWith}}
           
         </ul>
         

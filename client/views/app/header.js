@@ -14,7 +14,7 @@
 //                 .url     - the note's reference URL
 //
 //
-// last-modified: <2014-01-27 07:27:10 golden@golden-garage.net>
+// last-modified: <2014-01-28 22:25:02 golden@golden-garage.net>
 //
 
 Template.header.whenLoggedIn = function ( options, data )
@@ -32,6 +32,22 @@ Template.header.whenLoggedIn = function ( options, data )
 Template.header.whenLoggedInAt = function ( routeName, options )
 {
     if ( Meteor.user() && Router.current().route.name === routeName )
+    { 
+        return options.fn( this ); 
+    }  
+    else 
+    { 
+        return options.inverse( this ); 
+    }
+}
+
+Template.header.whenLoggedInStartsWith = function ( routeName, options )
+{
+    var                name = Router.current().route.name;
+    var             matches = name    && name.match( new RegExp( "^"+ routeName ) );
+    var startsWithRouteName = matches && matches.length > 0;
+
+    if ( Meteor.user() && startsWithRouteName )
     { 
         return options.fn( this ); 
     }  

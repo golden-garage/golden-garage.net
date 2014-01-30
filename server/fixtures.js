@@ -8,7 +8,7 @@
 //   Notes       - the notes       collection
 //
 //
-// last-modified: <2014-01-28 09:30:43 golden@golden-garage.net>
+// last-modified: <2014-01-28 18:48:19 golden@golden-garage.net>
 //
 
 if ( Notes.find().count() === 0 ) 
@@ -34,7 +34,7 @@ if ( Notes.find().count() === 0 )
 
 if ( LeakageData.find().count() === 0 ) 
 {
-    var  initialRecordCount = 10;
+    var  initialRecordCount = 1000;
     var  initialRandomSeed  = 0;
 
     var            date = new Date( "2013-10-01" );  // date of claim
@@ -73,11 +73,11 @@ if ( LeakageData.find().count() === 0 )
         return new Date( startTime + Math.floor( duration * localRandom.fraction() ) );
     }
 
-    var  date = randomDate();
-    var month = moment( date ).format( "YYYY-MM" );
-
     for ( var i = 0; i < initialRecordCount; i++ )
     {
+        var  date = randomDate();
+        var month = moment( date ).format( "YYYY-MM" );
+
         LeakageData.insert({
                date: date,
               month: month,
